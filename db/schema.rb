@@ -33,10 +33,11 @@ ActiveRecord::Schema.define(version: 2020_07_30_063542) do
   create_table "doctors", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.string "speciality"
     t.string "zip_code"
+    t.integer "city_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_doctors_on_city_id"
   end
 
   create_table "patients", force: :cascade do |t|
