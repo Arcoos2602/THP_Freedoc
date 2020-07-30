@@ -14,20 +14,16 @@ Appointment.destroy_all
 City.destroy_all
 Specialty.destroy_all
 
-specialties = ["pediatre", "dentiste", "généraliste", "kinesitherapeutes", "osteopathe"]
+specialties = ["pediatre", "dentiste", "généraliste", "kinesitherapeutes", "osteopathe", "dermatologue", "neurologue", "cardiologue", "psychatre"
+               "radiologue", "stomatologue"]
 
-
-#creation specialties
-#
 25.times do
 	city = City.create(name: Faker::Address.city)
 	d = Doctor.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, zip_code: Faker::Address.zip, city: city)
 	p = Patient.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, city: city)
-  a = Appointment.create(doctor: d, patient: p, city: city)
-  s = Specialty.create(name: specialties[rand(0..4)])
-  s2 = Specialty.create(name: specialties[rand(0..4)])
+  a = Appointment.create(doctor: d, patient: p, city: city, date: Faker::Date.in_date_period)
+  s = Specialty.create(name: specialties[rand(0..(specialties.length))])
+  s2 = Specialty.create(name: specialties[rand(0..(specialties.length))])
   d.specialties << s
+  d.specialties << s2
 end
-
-#100.times do
-#end
